@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar Digital Sicoob | 29 jun – 05 jul 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --turquesa:#00AE9D;
+  --verde-escuro:#003641;
+  --verde-medio:#7DB61C;
+  --verde-claro:#C9D200;
+  --roxo:#49479D;
+  --bg:#F5F8F7;
+  --card:#FFFFFF;
+  --ink:#0E2B33;
+  --ink-soft:#4A6570;
+  --line:#DDE8E6;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;color:var(--verde-escuro)}
+a{color:var(--turquesa);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible{outline:3px solid var(--verde-claro);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1060px;margin:0 auto;padding:0 24px}
+
+/* ===== NAV ===== */
+nav{position:sticky;top:0;z-index:50;background:var(--verde-escuro);box-shadow:0 2px 14px rgba(0,54,65,.25)}
+.nav-inner{max-width:1060px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nav-brand{display:flex;align-items:center;gap:10px;padding:14px 16px 14px 0;flex-shrink:0}
+.radar-dot{width:12px;height:12px;border-radius:50%;background:var(--verde-claro);position:relative;flex-shrink:0}
+.radar-dot::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--verde-claro);opacity:.6;animation:ping 2.2s ease-out infinite}
+@keyframes ping{0%{transform:scale(.5);opacity:.8}100%{transform:scale(1.8);opacity:0}}
+@media (prefers-reduced-motion:reduce){.radar-dot::after{animation:none}}
+.nav-brand span{color:#fff;font-family:'Sora',sans-serif;font-weight:700;font-size:.95rem;white-space:nowrap}
+nav ul{display:flex;list-style:none;gap:2px}
+nav ul a{display:block;padding:16px 13px;color:#BFD9D4;font-size:.82rem;font-weight:600;white-space:nowrap;border-bottom:3px solid transparent;transition:color .2s,border-color .2s}
+nav ul a:hover{color:#fff;text-decoration:none}
+nav ul a.active{color:var(--verde-claro);border-bottom-color:var(--verde-claro)}
+
+/* ===== HERO ===== */
+header{background:linear-gradient(135deg,var(--verde-escuro) 0%,#004E5C 55%,#00695F 100%);color:#fff;padding:64px 0 56px;position:relative;overflow:hidden}
+header::before{content:'';position:absolute;right:-140px;top:-140px;width:460px;height:460px;border-radius:50%;border:1.5px solid rgba(201,210,0,.28)}
+header::after{content:'';position:absolute;right:-60px;top:-60px;width:300px;height:300px;border-radius:50%;border:1.5px solid rgba(0,174,157,.4)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verde-claro);margin-bottom:16px}
+.eyebrow::before{content:'';width:26px;height:2px;background:var(--verde-claro)}
+header h1{color:#fff;font-size:clamp(1.9rem,4.4vw,3rem);font-weight:800;line-height:1.15;max-width:760px}
+header h1 em{font-style:normal;color:var(--verde-claro)}
+.hero-sub{margin-top:18px;max-width:680px;color:#CFE5E1;font-size:1.05rem}
+.hero-meta{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+.hero-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:8px 18px;font-size:.83rem;font-weight:600}
+
+/* ===== TRANSPARÊNCIA ===== */
+.transparency{background:#FFFCE8;border:1.5px solid var(--verde-claro);border-left:6px solid var(--verde-claro);border-radius:14px;padding:26px 28px;margin:-30px auto 0;position:relative;z-index:2;max-width:1012px;box-shadow:0 8px 24px rgba(0,54,65,.08)}
+.transparency h2{font-size:1rem;display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.transparency h2 svg{flex-shrink:0}
+.transparency p{font-size:.9rem;color:var(--ink-soft);margin-bottom:8px}
+.transparency p:last-child{margin-bottom:0}
+.transparency strong{color:var(--verde-escuro)}
+
+/* ===== SECTIONS ===== */
+section{padding:56px 0 12px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+.sec-num{font-family:'Sora',sans-serif;font-weight:800;font-size:.85rem;color:#fff;background:var(--turquesa);border-radius:8px;padding:4px 10px;flex-shrink:0}
+section h2{font-size:1.55rem;font-weight:700}
+.sec-desc{color:var(--ink-soft);margin:6px 0 28px;max-width:760px;font-size:.95rem}
+
+/* ===== RESUMO GRID ===== */
+.grid{display:grid;gap:16px}
+.grid-3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.info-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.info-card h3{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--turquesa);margin-bottom:8px}
+.info-card p{font-size:.95rem;color:var(--ink)}
+
+/* ===== TAGS DE FONTES ===== */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px}
+.chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:7px 16px;font-size:.85rem;font-weight:500;color:var(--ink)}
+.chip b{color:var(--turquesa);font-weight:700}
+
+/* ===== TRENDS ===== */
+.group-label{display:inline-flex;align-items:center;gap:10px;font-family:'Sora',sans-serif;font-weight:700;font-size:1.05rem;color:var(--verde-escuro);margin:34px 0 16px}
+.group-label .bar{width:34px;height:5px;border-radius:3px}
+.trend{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--turquesa);border-radius:14px;padding:26px 28px;margin-bottom:18px;transition:box-shadow .2s}
+.trend:hover{box-shadow:0 8px 22px rgba(0,54,65,.09)}
+.trend.coop{border-left-color:var(--verde-medio)}
+.trend.bench{border-left-color:var(--roxo)}
+.trend.destaque{border-left-color:var(--verde-claro);background:linear-gradient(180deg,#FFFEF4,#fff)}
+.trend h4{font-size:1.12rem;margin-bottom:10px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.badge{font-family:'Inter',sans-serif;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:3px 9px;flex-shrink:0}
+.badge.hot{background:var(--verde-claro);color:var(--verde-escuro)}
+.badge.data{background:var(--roxo);color:#fff}
+.badge.alerta{background:#FDEDE9;color:#B4472F;border:1px solid #EFC4B8}
+.trend p{font-size:.94rem;color:var(--ink);margin-bottom:10px}
+.trend .why{color:var(--ink-soft);font-size:.9rem;background:var(--bg);border-radius:10px;padding:12px 16px;margin-bottom:12px}
+.trend .why b{color:var(--verde-escuro)}
+.src{display:flex;flex-wrap:wrap;gap:8px;font-size:.8rem;align-items:center}
+.src-label{font-weight:700;color:var(--ink-soft);text-transform:uppercase;font-size:.7rem;letter-spacing:.08em}
+.src a{background:#E7F6F4;border:1px solid #BFE7E2;border-radius:999px;padding:5px 13px;font-weight:600;transition:background .15s}
+.src a:hover{background:#D2F0EC;text-decoration:none}
+.src a::after{content:' ↗';font-size:.75em}
+
+/* ===== NÚMEROS ===== */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:6px 0 22px}
+.stat{background:var(--verde-escuro);border-radius:14px;padding:22px 20px;color:#fff}
+.stat.alt{background:var(--turquesa)}
+.stat.alt2{background:var(--roxo)}
+.stat .n{font-family:'Sora',sans-serif;font-weight:800;font-size:1.7rem;line-height:1.1}
+.stat .l{font-size:.8rem;opacity:.85;margin-top:6px}
+
+/* ===== TREND TOPICS ===== */
+.topics{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.topic{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.topic h4{font-size:.98rem;margin-bottom:6px}
+.topic p{font-size:.86rem;color:var(--ink-soft);margin-bottom:10px}
+.topic .src{font-size:.76rem}
+
+/* ===== OPORTUNIDADES ===== */
+.opp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 28px;margin-bottom:18px;position:relative}
+.opp .prio{position:absolute;top:24px;right:24px;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:4px 11px}
+.prio.alta{background:var(--verde-medio);color:#fff}
+.prio.media{background:var(--verde-claro);color:var(--verde-escuro)}
+.prio.monitorar{background:#EEF0F6;color:var(--roxo);border:1px dashed var(--roxo)}
+.opp.nao-acionavel{border:1.5px dashed #B9C2D8;background:#FBFCFE}
+.opp.nao-acionavel h4{color:#5D6B8A}
+.opp h4{font-size:1.1rem;margin-bottom:12px;max-width:80%}
+.opp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
+.opp-cell{background:var(--bg);border-radius:10px;padding:12px 15px}
+.opp-cell .k{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:var(--turquesa);margin-bottom:4px}
+.opp-cell .v{font-size:.87rem;color:var(--ink)}
+.opp>p{font-size:.93rem;color:var(--ink);margin-bottom:4px}
+.opp .src{margin-top:14px}
+
+/* ===== REFERÊNCIAS ===== */
+.refs{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;margin-bottom:16px}
+.refs h3{font-size:.85rem;text-transform:uppercase;letter-spacing:.1em;color:var(--turquesa);margin-bottom:14px}
+.refs ol{list-style:none}
+.refs li{padding:10px 0;border-bottom:1px solid var(--line);font-size:.9rem;display:flex;gap:12px;align-items:baseline}
+.refs li:last-child{border-bottom:none}
+.refs li .d{color:var(--ink-soft);font-size:.78rem;flex-shrink:0;font-weight:600;min-width:52px}
+
+/* ===== FOOTER ===== */
+footer{background:var(--verde-escuro);color:#BFD9D4;margin-top:70px;padding:40px 0;font-size:.85rem}
+footer .wrap{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center}
+footer b{color:#fff;font-family:'Sora',sans-serif}
+.brand-strip{display:flex;gap:6px;margin-top:10px}
+.brand-strip span{width:34px;height:6px;border-radius:3px}
+
+@media(max-width:640px){
+  header{padding:48px 0 60px}
+  .transparency{margin:-38px 16px 0}
+  .opp .prio{position:static;display:inline-block;margin-bottom:12px}
+  .opp h4{max-width:100%}
+}
+</style>
+</head>
+<body>
+
+<nav aria-label="Navegação do relatório">
+  <div class="nav-inner">
+    <div class="nav-brand"><span class="radar-dot" aria-hidden="true"></span><span>Radar Digital Sicoob</span></div>
+    <ul>
+      <li><a href="#resumo">Resumo</a></li>
+      <li><a href="#analisado">O que foi analisado</a></li>
+      <li><a href="#trends">Trends da semana</a></li>
+      <li><a href="#topics">Trend Topics</a></li>
+      <li><a href="#oportunidades">Oportunidades</a></li>
+      <li><a href="#referencias">Referências</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Inteligência competitiva semanal · Edição 29 jun – 05 jul 2026</div>
+    <h1>A semana em que o cooperativismo cruzou <em>R$&nbsp;1&nbsp;trilhão</em>. E os concorrentes ocuparam o palco do Plano Safra.</h1>
+    <p class="hero-sub">Banco Central confirmou o marco histórico do setor na véspera do Dia Internacional do Cooperativismo. No mesmo período, o governo lançou o Plano Safra 2026/27 e o Sicredi dominou a imprensa nacional com seu anúncio de crédito rural. Este relatório mostra onde estão as janelas de comunicação para o Sicoob.</p>
+    <div class="hero-meta">
+      <span class="hero-chip">📅 Pesquisa concluída em 05/07/2026</span>
+      <span class="hero-chip">🔗 18 fontes verificadas e clicáveis</span>
+      <span class="hero-chip">🎯 6 oportunidades priorizadas</span>
+    </div>
+  </div>
+</header>
+
+<div class="transparency">
+  <h2><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#003641" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> Metodologia e transparência</h2>
+  <p>Todo insight deste relatório possui fonte verificável e link direto para a publicação original. Nenhum exemplo foi inventado. Itens sem comprovação foram descartados durante a análise.</p>
+  <p><strong>Correções feitas nesta edição:</strong> os dados do Boletim Focus recebidos na pesquisa inicial estavam desatualizados (referiam-se a 25/05: Selic 13,25% e IPCA 5,04%). Este relatório usa a leitura mais recente disponível do Focus (22/06), que projeta Selic a 14,00% e IPCA a 5,33% para 2026. A campanha "Faz Valer" do Nubank, lançada em março/2026, foi retirada das trends da semana por estar fora do período analisado.</p>
+</div>
+
+<!-- ============ 1. RESUMO ============ -->
+<section id="resumo">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Resumo da pesquisa</h2></div>
+    <p class="sec-desc">Parâmetros da coleta e do escopo desta edição.</p>
+    <div class="grid grid-3">
+      <div class="info-card"><h3>Período analisado</h3><p>29 de junho a 05 de julho de 2026</p></div>
+      <div class="info-card"><h3>Data da pesquisa</h3><p>05 de julho de 2026</p></div>
+      <div class="info-card"><h3>Escopo</h3><p>Cooperativismo financeiro, mercado financeiro, marketing digital, plataformas e IA</p></div>
+      <div class="info-card"><h3>Plataformas monitoradas</h3><p>Instagram, LinkedIn, TikTok, Facebook, YouTube e X</p></div>
+      <div class="info-card"><h3>Segmentos pesquisados</h3><p>Cooperativas de crédito, bancos tradicionais e digitais, agências e newsrooms oficiais</p></div>
+      <div class="info-card"><h3>Critério de inclusão</h3><p>Somente informações com fonte confiável, data e link original verificável</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. O QUE FOI ANALISADO ============ -->
+<section id="analisado">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>O que foi analisado</h2></div>
+    <p class="sec-desc">Fontes e perfis monitorados durante o período.</p>
+    <div class="chips">
+      <span class="chip"><b>Reguladores:</b> Banco Central (Panorama SNCC, Boletim Focus)</span>
+      <span class="chip"><b>Governo:</b> Ministério da Agricultura, Ministério da Fazenda, Agência Brasil</span>
+      <span class="chip"><b>Cooperativas:</b> Sicoob (sistema e singulares), Sicredi, Cresol, Unicred</span>
+      <span class="chip"><b>Entidades:</b> OCB, FNCC, Portal Cooperativismo Financeiro</span>
+      <span class="chip"><b>Imprensa:</b> Reuters, Forbes, InfoMoney, Valor, UOL, Canal Rural</span>
+      <span class="chip"><b>Plataformas:</b> TikTok Newsroom, newsletters especializadas em social media</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. TRENDS ============ -->
+<section id="trends">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Principais trends da semana</h2></div>
+    <p class="sec-desc">Apenas tendências confirmadas durante a pesquisa, organizadas em três grupos. Cada card traz o resumo, o motivo da relevância e os links originais.</p>
+
+    <div class="group-label"><span class="bar" style="background:var(--verde-medio)"></span> Cooperativismo</div>
+
+    <div class="trend coop destaque">
+      <h4>Cooperativas de crédito superam R$ 1 trilhão em ativos <span class="badge hot">Destaque da semana</span></h4>
+      <div class="stats">
+        <div class="stat"><div class="n">R$ 1,036 tri</div><div class="l">Ativos totais do SNCC em 2025 (+17%)</div></div>
+        <div class="stat alt"><div class="n">21,2 mi</div><div class="l">Cooperados (era 13,6 mi em 2021)</div></div>
+        <div class="stat alt"><div class="n">59%</div><div class="l">Dos municípios brasileiros atendidos</div></div>
+        <div class="stat alt2"><div class="n">13,1% vs 8,5%</div><div class="l">Crescimento da carteira coop. vs restante do SFN</div></div>
+      </div>
+      <p>O Banco Central divulgou em 02/07 o Panorama do SNCC confirmando que, pela primeira vez, o cooperativismo de crédito ultrapassou R$ 1 trilhão em ativos. As captações chegaram a R$ 834,4 bilhões (+17,6%), puxadas por depósitos a prazo e LCA. A carteira de crédito cresceu quase o dobro do ritmo do restante do sistema financeiro.</p>
+      <div class="why"><b>Por que chamou atenção:</b> o BC publicou o dado na véspera do Dia Internacional do Cooperativismo, criando uma janela perfeita de comunicação. É o argumento de autoridade mais forte do ano para posicionar o Sicoob como parte do segmento que mais cresce no país.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/cooperativas-de-credito-superam-r-1-trilhao-em-ativos" target="_blank" rel="noopener">Agência Brasil (02/07)</a>
+        <a href="https://www.suno.com.br/noticias/cooperativas-credito-superam-r-1-trilhao-ativos-2025-bc-mt/" target="_blank" rel="noopener">Suno</a>
+        <a href="https://www.letsmoney.com.br/noticias/cooperativas-credito-superam-1-trilhao-ativos" target="_blank" rel="noopener">Let's Money / Valor</a>
+      </div>
+    </div>
+
+    <div class="trend coop">
+      <h4>Dia Internacional do Cooperativismo: "Cooperativas por um mundo pacífico"</h4>
+      <p>O Coops Day 2026 foi celebrado no sábado, 04/07, com o tema mundial "Cooperativas por um mundo pacífico", conectado ao ODS 16 da ONU. No Brasil, cooperativas singulares do Sicoob (São Miguel/SC, Credija, Credisulca, Credicarpa) participaram de festivais comunitários, passeios ciclísticos e divulgação de indicadores de ganho social.</p>
+      <div class="why"><b>Por que chamou atenção:</b> a data mobilizou ações locais em série, mas de forma pulverizada. Entidades como a OCB/RJ já planejam unir o tema ao clima da Copa do Mundo, cuja final acontece em 19/07. O mote "o coletivo vence" está disponível para quem ocupá-lo primeiro.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://cooperativismodecredito.coop.br/2026/06/tema-do-dia-internacional-das-cooperativas-de-2026/" target="_blank" rel="noopener">Portal Cooperativismo Financeiro</a>
+        <a href="https://fncc.com.br/dia-internacional-do-cooperativismo-sera-celebrado-no-dia-4-de-julho/" target="_blank" rel="noopener">FNCC</a>
+        <a href="https://empresasecooperativas.com.br/coopsday-2026-dia-internacional-cooperativas/" target="_blank" rel="noopener">Empresas e Cooperativas (Copa + Coops Day)</a>
+        <a href="https://clubenoticia.com.br/dia-internacional-do-cooperativismo-o-movimento-que-transforma-pessoas-negocios-e-comunidades/" target="_blank" rel="noopener">Case Sicoob Credicarpa</a>
+      </div>
+    </div>
+
+    <div class="trend coop">
+      <h4>Sicredi anuncia R$ 72,1 bilhões no Plano Safra e domina a imprensa nacional <span class="badge alerta">Alerta competitivo</span></h4>
+      <p>Em 02/07, o Sicredi anunciou R$ 72,1 bilhões para produtores rurais no ciclo 2026/27 (+4,4%), reforçando o título de instituição financeira privada que mais concede crédito rural no país, com carteira agro de R$ 121 bilhões. A pauta foi replicada por Reuters, Forbes e dezenas de portais regionais.</p>
+      <div class="why"><b>Por que chamou atenção:</b> na cobertura nacional da semana, não localizamos anúncio consolidado do Sicoob para o Plano Safra 2026/27. A presença da marca ficou restrita a ações regionais. Em share of voice, o Sicredi ocupou sozinho a narrativa de "cooperativa parceira do agro" no lançamento do ciclo.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://forbes.com.br/forbes-agro/2026/07/sicredi-preve-r-721-bilhoes-para-plano-safra-2026-2027/" target="_blank" rel="noopener">Forbes Agro</a>
+        <a href="https://br.investing.com/news/economy-news/sicredi-preve-r721-bilhoes-para-plano-safra-20262027-1991345" target="_blank" rel="noopener">Reuters via Investing</a>
+      </div>
+    </div>
+
+    <div class="trend coop">
+      <h4>Sicoob São Miguel realiza a primeira liberação de crédito do novo Plano Safra</h4>
+      <p>No dia seguinte ao lançamento do plano, o Sicoob São Miguel (SC) liberou a primeira operação de crédito rural do ciclo 2026/27, na modalidade custeio pecuário, e anunciou mais de R$ 2 bilhões para o segmento. No ciclo anterior, a cooperativa repassou R$ 1,8 bilhão ao agro (+51%). O Sicoob Copersul (MG) também lançou seu Plano Safra regional em evento com cooperados em 30/06.</p>
+      <div class="why"><b>Por que chamou atenção:</b> é a narrativa de agilidade mais forte da semana dentro do sistema Sicoob. "Primeira liberação" é um formato replicável: transforma velocidade operacional em prova concreta de proximidade com o produtor.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://folhadooeste.com.br/noticias/sicoob-sao-miguel-libera-primeira-operacao-de-credito-rural-no-novo-plano-safra-2026-2027.15477552" target="_blank" rel="noopener">Folha do Oeste</a>
+        <a href="https://www.clicsoledade.online/noticias/sicoob/92630/sicoob-sao-miguel-libera-primeira-operacao-de-credito-rural-no-novo-plano-safra-2026-2027/" target="_blank" rel="noopener">ClicSoledade</a>
+        <a href="https://www.grupodttv.com.br/plano-safra-2026-2027-sicoob-copersul/" target="_blank" rel="noopener">Sicoob Copersul (Grupo DTTV)</a>
+      </div>
+    </div>
+
+    <div class="group-label"><span class="bar" style="background:var(--turquesa)"></span> Mercado financeiro</div>
+
+    <div class="trend">
+      <h4>Governo lança Plano Safra 2026/27 com R$ 610 bilhões e juros menores</h4>
+      <p>Lançado em 30/06 no Palácio do Planalto, o Plano Safra 2026/27 destina R$ 525,1 bilhões à agricultura empresarial e R$ 97,3 bilhões à agricultura familiar, com o slogan "Crédito que fortalece o campo, campo que alimenta o mundo". As taxas máximas caíram: custeio empresarial de 14% para 12,5% a.a. e Pronamp de 10% para 9% a.a. Produtores com CAR regular e práticas sustentáveis ganham desconto de até 1 ponto percentual.</p>
+      <div class="why"><b>Por que chamou atenção:</b> além do volume recorde, o desenho premia sustentabilidade com juro menor. Isso abre pauta de conteúdo útil: explicar ao cooperado rural como acessar as linhas e como o desconto verde funciona na prática.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://www.gov.br/agricultura/pt-br/assuntos/noticias/2026/plano-safra-26-27-destina-r-525-bilhoes-para-fortalecer-a-agricultura-empresarial" target="_blank" rel="noopener">Ministério da Agricultura</a>
+        <a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/julho/plano-safra-2026-2027-supera-r-610-bilhoes-com-participacao-da-fazenda-na-reducao-de-juros-e-equilibrio-nas-contas-publicas" target="_blank" rel="noopener">Ministério da Fazenda</a>
+        <a href="https://www.canalrural.com.br/agricultura/plano-safra-2026-27-tera-r-525-bilhoes-e-juros-menores-entenda-o-que-muda-no-credito-rural/" target="_blank" rel="noopener">Canal Rural</a>
+      </div>
+    </div>
+
+    <div class="trend">
+      <h4>Boletim Focus: mercado projeta Selic a 14% e inflação a 5,33% em 2026 <span class="badge data">Dado corrigido</span></h4>
+      <p>Na leitura mais recente disponível do Boletim Focus (22/06), o mercado elevou a projeção da Selic para 14,00% a.a. no fim de 2026, terceira alta semanal seguida, e do IPCA para 5,33%, na 15ª revisão positiva consecutiva. O dólar segue projetado em R$ 5,20.</p>
+      <div class="why"><b>Por que chamou atenção:</b> juros altos por mais tempo mudam a conversa com o cooperado. Renda fixa cooperativa (RDC, LCA) ganha apelo, e o crédito caro aumenta a demanda por orientação financeira. É contexto direto para conteúdo de educação financeira e captação.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://www.infomoney.com.br/economia/boletim-focus-eleva-projecoes-de-inflacao-e-selic-para-14-em-2026/" target="_blank" rel="noopener">InfoMoney (22/06)</a>
+      </div>
+    </div>
+
+    <div class="group-label"><span class="bar" style="background:var(--roxo)"></span> Benchmarks, plataformas e IA</div>
+
+    <div class="trend bench">
+      <h4>Copa do Mundo 2026 vira território de marca para o cooperativismo</h4>
+      <p>Com a final marcada para 19/07, o clima de Copa está inspirando campanhas no setor. A FNCC registrou que cooperativas já promovem ações temáticas, e o Sistema OCB/RJ planeja celebração unindo futebol e cooperativismo, explorando a coincidência entre o Coops Day e o torneio: em ambos, o coletivo bem organizado supera o talento individual.</p>
+      <div class="why"><b>Por que chamou atenção:</b> é uma janela de duas semanas com engajamento emocional altíssimo e conexão natural com os valores da marca. Sem necessidade de usar marcas ou imagens oficiais do torneio, o conceito "jogar junto" pertence ao cooperativismo por definição.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://empresasecooperativas.com.br/coopsday-2026-dia-internacional-cooperativas/" target="_blank" rel="noopener">Empresas e Cooperativas</a>
+        <a href="https://fncc.com.br/dia-internacional-do-cooperativismo-sera-celebrado-no-dia-4-de-julho/" target="_blank" rel="noopener">FNCC</a>
+      </div>
+    </div>
+
+    <div class="trend bench">
+      <h4>TikTok Next 2026: autenticidade e "instinto insubstituível" guiam o consumo de conteúdo</h4>
+      <p>O relatório oficial de tendências do TikTok para 2026 aponta virada do escapismo para o realismo: audiências buscam histórias reais, bastidores e processo em vez de perfeição curada. Marcas que mostram pessoas de verdade e "leem o ambiente" da comunidade estão conquistando lealdade, enquanto estéticas artificiais perdem tração.</p>
+      <div class="why"><b>Por que chamou atenção:</b> valida a vantagem natural das cooperativas em conteúdo. Histórias reais de cooperados e de impacto local são exatamente o formato que o algoritmo e a audiência estão premiando.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://newsroom.tiktok.com/apresentamos-o-tiktok-next-2026?lang=pt" target="_blank" rel="noopener">TikTok Newsroom (oficial)</a>
+      </div>
+    </div>
+
+    <div class="trend bench">
+      <h4>Plataformas na semana: IA agêntica em anúncios, microdramas e comentários organizados por IA</h4>
+      <p>Compilado da semana em social media: o TikTok lançou um Agentic Hub com agentes de IA para anunciantes (geração criativa, catálogos e insights de audiência) e passou a permitir microdramas de marca com segmentação automatizada. O YouTube começou a usar IA para organizar comentários por tema. Meta e Shopee levaram programa de afiliados ao Instagram, com conversão fora da plataforma.</p>
+      <div class="why"><b>Por que chamou atenção:</b> a automação por IA avança da produção de conteúdo para a operação de mídia. Ainda sem aplicação imediata comprovada para o contexto Sicoob, mas o movimento merece monitoramento contínuo.</div>
+      <div class="src"><span class="src-label">Fontes</span>
+        <a href="https://mandarefs.substack.com/p/298-guia-de-stories-oficial" target="_blank" rel="noopener">Newsletter Ana Carvalho RP (03/07)</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 4. TREND TOPICS ============ -->
+<section id="topics">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Trend Topics</h2></div>
+    <p class="sec-desc">Assuntos que estiveram em destaque no período, com contexto e fonte.</p>
+    <div class="topics">
+      <div class="topic"><h4>R$ 1 trilhão do cooperativismo</h4><p>Ativos do SNCC cruzam a marca histórica; carteira cresce 13,1% no ano. Publicado pelo BC em 02/07.</p><div class="src"><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/cooperativas-de-credito-superam-r-1-trilhao-em-ativos" target="_blank" rel="noopener">Agência Brasil</a></div></div>
+      <div class="topic"><h4>Coops Day 2026</h4><p>Dia Internacional do Cooperativismo celebrado em 04/07 com o tema "Cooperativas por um mundo pacífico".</p><div class="src"><a href="https://cooperativismodecredito.coop.br/2026/06/tema-do-dia-internacional-das-cooperativas-de-2026/" target="_blank" rel="noopener">Portal Cooperativismo</a></div></div>
+      <div class="topic"><h4>Plano Safra 2026/27</h4><p>R$ 610 bilhões no total, juros menores e desconto para produção sustentável. Lançado em 30/06.</p><div class="src"><a href="https://www.gov.br/agricultura/pt-br/assuntos/noticias/2026/plano-safra-26-27-destina-r-525-bilhoes-para-fortalecer-a-agricultura-empresarial" target="_blank" rel="noopener">MAPA</a></div></div>
+      <div class="topic"><h4>Sicredi no crédito rural</h4><p>R$ 72,1 bilhões anunciados para o novo ciclo, com ampla repercussão em Reuters e Forbes.</p><div class="src"><a href="https://forbes.com.br/forbes-agro/2026/07/sicredi-preve-r-721-bilhoes-para-plano-safra-2026-2027/" target="_blank" rel="noopener">Forbes</a></div></div>
+      <div class="topic"><h4>Selic projetada a 14%</h4><p>Focus eleva juros e inflação esperados para 2026; dólar estável em R$ 5,20.</p><div class="src"><a href="https://www.infomoney.com.br/economia/boletim-focus-eleva-projecoes-de-inflacao-e-selic-para-14-em-2026/" target="_blank" rel="noopener">InfoMoney</a></div></div>
+      <div class="topic"><h4>Copa do Mundo e coletivo</h4><p>Final em 19/07 inspira campanhas de cooperativas unindo futebol e cooperação.</p><div class="src"><a href="https://empresasecooperativas.com.br/coopsday-2026-dia-internacional-cooperativas/" target="_blank" rel="noopener">Empresas e Cooperativas</a></div></div>
+      <div class="topic"><h4>Autenticidade no TikTok</h4><p>Relatório oficial aponta realismo e bastidores como formatos vencedores de 2026.</p><div class="src"><a href="https://newsroom.tiktok.com/apresentamos-o-tiktok-next-2026?lang=pt" target="_blank" rel="noopener">TikTok Newsroom</a></div></div>
+      <div class="topic"><h4>IA agêntica em mídia</h4><p>TikTok lança hub de agentes de IA para anunciantes; YouTube organiza comentários por tema com IA.</p><div class="src"><a href="https://mandarefs.substack.com/p/298-guia-de-stories-oficial" target="_blank" rel="noopener">Newsletter (03/07)</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5. OPORTUNIDADES ============ -->
+<section id="oportunidades">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Oportunidades para o Sicoob</h2></div>
+    <p class="sec-desc">Recomendações baseadas exclusivamente nas evidências desta pesquisa, com formato, canal e prioridade. Itens tracejados são de monitoramento, sem ação imediata.</p>
+
+    <div class="opp">
+      <span class="prio alta">Prioridade alta</span>
+      <h4>1. Carrossel institucional "R$ 1 trilhão: o Brasil escolheu cooperar"</h4>
+      <p>Transformar os dados do Panorama do SNCC em um carrossel de dados com narrativa: ativos, cooperados, presença em 59% dos municípios e crescimento acima do sistema financeiro. O Sicoob é o maior sistema cooperativo do país e é o principal beneficiado simbólico desse marco.</p>
+      <div class="opp-grid">
+        <div class="opp-cell"><div class="k">Por que faz sentido</div><div class="v">Dado oficial do BC, divulgado na semana, com autoridade máxima. Prova que o cooperado está no lado que mais cresce.</div></div>
+        <div class="opp-cell"><div class="k">Formato</div><div class="v">Carrossel de dados (Instagram) + post de análise (LinkedIn)</div></div>
+        <div class="opp-cell"><div class="k">Rede recomendada</div><div class="v">LinkedIn e Instagram</div></div>
+      </div>
+      <div class="src"><span class="src-label">Referência</span><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/cooperativas-de-credito-superam-r-1-trilhao-em-ativos" target="_blank" rel="noopener">Agência Brasil / BC</a></div>
+    </div>
+
+    <div class="opp">
+      <span class="prio alta">Prioridade alta</span>
+      <h4>2. Ocupar o espaço do Plano Safra no Nordeste com a narrativa de agilidade</h4>
+      <p>O Sicredi dominou a cobertura nacional do Plano Safra. A resposta regional é replicar o formato "primeira liberação" do Sicoob São Miguel: divulgar as primeiras operações liberadas pelas cooperativas do Sicoob Nordeste, com nome do produtor, cultura financiada e prazo. Complementar com conteúdo de utilidade explicando as novas taxas e o desconto verde de até 1 ponto percentual.</p>
+      <div class="opp-grid">
+        <div class="opp-cell"><div class="k">Por que faz sentido</div><div class="v">Fecha o gap de share of voice detectado na semana e transforma velocidade operacional em prova de proximidade.</div></div>
+        <div class="opp-cell"><div class="k">Formato</div><div class="v">Release regional + vídeo curto com o produtor + card explicativo das linhas</div></div>
+        <div class="opp-cell"><div class="k">Rede recomendada</div><div class="v">Imprensa regional, Instagram e WhatsApp</div></div>
+      </div>
+      <div class="src"><span class="src-label">Referências</span>
+        <a href="https://folhadooeste.com.br/noticias/sicoob-sao-miguel-libera-primeira-operacao-de-credito-rural-no-novo-plano-safra-2026-2027.15477552" target="_blank" rel="noopener">Case Sicoob São Miguel</a>
+        <a href="https://www.gov.br/agricultura/pt-br/assuntos/noticias/2026/plano-safra-26-27-destina-r-525-bilhoes-para-fortalecer-a-agricultura-empresarial" target="_blank" rel="noopener">MAPA</a>
+        <a href="https://forbes.com.br/forbes-agro/2026/07/sicredi-preve-r-721-bilhoes-para-plano-safra-2026-2027/" target="_blank" rel="noopener">Benchmark Sicredi</a>
+      </div>
+    </div>
+
+    <div class="opp">
+      <span class="prio alta">Prioridade alta</span>
+      <h4>3. Série "O coletivo vence" no clima da Copa do Mundo</h4>
+      <p>Até a final de 19/07, publicar uma série curta conectando os valores do futebol aos do cooperativismo: ninguém ganha sozinho, o resultado é dividido, cada posição importa. Usar conceito próprio, sem marcas, atletas ou imagens oficiais do torneio, evitando risco jurídico e mantendo a mensagem no território da marca.</p>
+      <div class="opp-grid">
+        <div class="opp-cell"><div class="k">Por que faz sentido</div><div class="v">Janela de engajamento emocional já sendo explorada pelo setor (OCB/RJ). A analogia pertence naturalmente ao cooperativismo.</div></div>
+        <div class="opp-cell"><div class="k">Formato</div><div class="v">Reels de 20 a 30 segundos + cards de frase</div></div>
+        <div class="opp-cell"><div class="k">Rede recomendada</div><div class="v">Instagram e TikTok</div></div>
+      </div>
+      <div class="src"><span class="src-label">Referências</span>
+        <a href="https://empresasecooperativas.com.br/coopsday-2026-dia-internacional-cooperativas/" target="_blank" rel="noopener">Empresas e Cooperativas</a>
+        <a href="https://fncc.com.br/dia-internacional-do-cooperativismo-sera-celebrado-no-dia-4-de-julho/" target="_blank" rel="noopener">FNCC</a>
+      </div>
+    </div>
+
+    <div class="opp">
+      <span class="prio media">Prioridade média</span>
+      <h4>4. Educação financeira para o cenário de Selic a 14%</h4>
+      <p>Com o mercado projetando juros mais altos por mais tempo, produzir conteúdo prático: o que muda para quem tem dívida, por que renda fixa cooperativa (RDC, LCA) ganha atratividade e como planejar o segundo semestre. Linguagem acessível, sem promessa de rentabilidade.</p>
+      <div class="opp-grid">
+        <div class="opp-cell"><div class="k">Por que faz sentido</div><div class="v">Contexto macro confirmado pelo Focus. Posiciona o Sicoob como orientador confiável e apoia a captação.</div></div>
+        <div class="opp-cell"><div class="k">Formato</div><div class="v">Vídeo curto com especialista da cooperativa + infográfico</div></div>
+        <div class="opp-cell"><div class="k">Rede recomendada</div><div class="v">Instagram, WhatsApp e LinkedIn</div></div>
+      </div>
+      <div class="src"><span class="src-label">Referência</span><a href="https://www.infomoney.com.br/economia/boletim-focus-eleva-projecoes-de-inflacao-e-selic-para-14-em-2026/" target="_blank" rel="noopener">InfoMoney / Focus</a></div>
+    </div>
+
+    <div class="opp">
+      <span class="prio media">Prioridade média</span>
+      <h4>5. Bastidores e histórias reais de cooperados</h4>
+      <p>Aplicar a diretriz do TikTok Next 2026: menos produção polida, mais processo e gente de verdade. Documentar o dia de um cooperado rural recebendo o crédito, a equipe da agência no interior, o impacto de um projeto social financiado pela cooperativa. O ganho social do Sicoob Credicarpa (R$ 102 milhões em 2025) mostra o tipo de número que sustenta essas histórias.</p>
+      <div class="opp-grid">
+        <div class="opp-cell"><div class="k">Por que faz sentido</div><div class="v">A audiência está premiando autenticidade, e cooperativas têm matéria-prima real que bancos digitais precisam encenar.</div></div>
+        <div class="opp-cell"><div class="k">Formato</div><div class="v">Mini-documentário vertical, sem roteiro engessado</div></div>
+        <div class="opp-cell"><div class="k">Rede recomendada</div><div class="v">TikTok, Reels e YouTube Shorts</div></div>
+      </div>
+      <div class="src"><span class="src-label">Referências</span>
+        <a href="https://newsroom.tiktok.com/apresentamos-o-tiktok-next-2026?lang=pt" target="_blank" rel="noopener">TikTok Newsroom</a>
+        <a href="https://clubenoticia.com.br/dia-internacional-do-cooperativismo-o-movimento-que-transforma-pessoas-negocios-e-comunidades/" target="_blank" rel="noopener">Case Credicarpa</a>
+      </div>
+    </div>
+
+    <div class="opp nao-acionavel">
+      <span class="prio monitorar">Monitorar</span>
+      <h4>6. IA agêntica em mídia paga (TikTok Agentic Hub e microdramas)</h4>
+      <p>O TikTok abriu agentes de IA para anunciantes e formatos de microdrama de marca. Ainda não há caso comprovado no setor financeiro cooperativo brasileiro, e a adoção exige avaliação de governança conforme o Manual de Uso Responsável de IA do Sicoob. Recomendação: acompanhar por 2 a 3 ciclos antes de qualquer teste.</p>
+      <div class="src"><span class="src-label">Referência</span><a href="https://mandarefs.substack.com/p/298-guia-de-stories-oficial" target="_blank" rel="noopener">Newsletter Ana Carvalho RP (03/07)</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ 6. REFERÊNCIAS ============ -->
+<section id="referencias">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Referências pesquisadas</h2></div>
+    <p class="sec-desc">Todos os links utilizados nesta edição, organizados por categoria.</p>
+
+    <div class="refs">
+      <h3>Cooperativismo</h3>
+      <ol>
+        <li><span class="d">02/07</span><a href="https://agenciabrasil.ebc.com.br/economia/noticia/2026-07/cooperativas-de-credito-superam-r-1-trilhao-em-ativos" target="_blank" rel="noopener">Agência Brasil: Cooperativas de crédito superam R$ 1 trilhão em ativos</a></li>
+        <li><span class="d">02/07</span><a href="https://www.suno.com.br/noticias/cooperativas-credito-superam-r-1-trilhao-ativos-2025-bc-mt/" target="_blank" rel="noopener">Suno: Cooperativas superam R$ 1 trilhão, mostra BC</a></li>
+        <li><span class="d">03/07</span><a href="https://www.letsmoney.com.br/noticias/cooperativas-credito-superam-1-trilhao-ativos" target="_blank" rel="noopener">Let's Money: Crédito cooperativo supera R$ 1 trilhão (dados Valor Econômico)</a></li>
+        <li><span class="d">jun/26</span><a href="https://cooperativismodecredito.coop.br/2026/06/tema-do-dia-internacional-das-cooperativas-de-2026/" target="_blank" rel="noopener">Portal Cooperativismo Financeiro: Tema do Dia Internacional das Cooperativas 2026</a></li>
+        <li><span class="d">jun/26</span><a href="https://fncc.com.br/dia-internacional-do-cooperativismo-sera-celebrado-no-dia-4-de-julho/" target="_blank" rel="noopener">FNCC: Dia Internacional do Cooperativismo em 4 de julho</a></li>
+        <li><span class="d">04/07</span><a href="https://clubenoticia.com.br/dia-internacional-do-cooperativismo-o-movimento-que-transforma-pessoas-negocios-e-comunidades/" target="_blank" rel="noopener">Clube Notícia: Coops Day e o case Sicoob Credicarpa</a></li>
+        <li><span class="d">02/07</span><a href="https://forbes.com.br/forbes-agro/2026/07/sicredi-preve-r-721-bilhoes-para-plano-safra-2026-2027/" target="_blank" rel="noopener">Forbes Agro: Sicredi prevê R$ 72,1 bilhões para Plano Safra 2026/2027</a></li>
+        <li><span class="d">02/07</span><a href="https://br.investing.com/news/economy-news/sicredi-preve-r721-bilhoes-para-plano-safra-20262027-1991345" target="_blank" rel="noopener">Reuters (via Investing): Sicredi prevê R$ 72,1 bilhões</a></li>
+        <li><span class="d">01/07</span><a href="https://folhadooeste.com.br/noticias/sicoob-sao-miguel-libera-primeira-operacao-de-credito-rural-no-novo-plano-safra-2026-2027.15477552" target="_blank" rel="noopener">Folha do Oeste: Sicoob São Miguel libera primeira operação do novo Plano Safra</a></li>
+        <li><span class="d">01/07</span><a href="https://www.clicsoledade.online/noticias/sicoob/92630/sicoob-sao-miguel-libera-primeira-operacao-de-credito-rural-no-novo-plano-safra-2026-2027/" target="_blank" rel="noopener">ClicSoledade: Sicoob São Miguel no novo Plano Safra</a></li>
+        <li><span class="d">01/07</span><a href="https://www.grupodttv.com.br/plano-safra-2026-2027-sicoob-copersul/" target="_blank" rel="noopener">Grupo DTTV: Plano Safra Sicoob Copersul 26/27</a></li>
+      </ol>
+    </div>
+
+    <div class="refs">
+      <h3>Mercado financeiro e governo</h3>
+      <ol>
+        <li><span class="d">30/06</span><a href="https://www.gov.br/agricultura/pt-br/assuntos/noticias/2026/plano-safra-26-27-destina-r-525-bilhoes-para-fortalecer-a-agricultura-empresarial" target="_blank" rel="noopener">Ministério da Agricultura: Plano Safra 26/27 destina R$ 525 bilhões</a></li>
+        <li><span class="d">01/07</span><a href="https://www.gov.br/fazenda/pt-br/assuntos/noticias/2026/julho/plano-safra-2026-2027-supera-r-610-bilhoes-com-participacao-da-fazenda-na-reducao-de-juros-e-equilibrio-nas-contas-publicas" target="_blank" rel="noopener">Ministério da Fazenda: Plano Safra supera R$ 610 bilhões</a></li>
+        <li><span class="d">30/06</span><a href="https://www.canalrural.com.br/agricultura/plano-safra-2026-27-tera-r-525-bilhoes-e-juros-menores-entenda-o-que-muda-no-credito-rural/" target="_blank" rel="noopener">Canal Rural: o que muda no crédito rural</a></li>
+        <li><span class="d">22/06</span><a href="https://www.infomoney.com.br/economia/boletim-focus-eleva-projecoes-de-inflacao-e-selic-para-14-em-2026/" target="_blank" rel="noopener">InfoMoney: Focus eleva projeções de inflação e Selic para 14% em 2026</a></li>
+      </ol>
+    </div>
+
+    <div class="refs">
+      <h3>Benchmarks, plataformas e IA</h3>
+      <ol>
+        <li><span class="d">jun/26</span><a href="https://empresasecooperativas.com.br/coopsday-2026-dia-internacional-cooperativas/" target="_blank" rel="noopener">Empresas e Cooperativas: Coops Day 2026 e a conexão com a Copa do Mundo</a></li>
+        <li><span class="d">2026</span><a href="https://newsroom.tiktok.com/apresentamos-o-tiktok-next-2026?lang=pt" target="_blank" rel="noopener">TikTok Newsroom: TikTok Next 2026, previsões de tendências para marcas</a></li>
+        <li><span class="d">03/07</span><a href="https://mandarefs.substack.com/p/298-guia-de-stories-oficial" target="_blank" rel="noopener">Newsletter Ana Carvalho RP #298: Agentic Hub, microdramas e novidades das plataformas</a></li>
+      </ol>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <b>Radar Digital Sicoob</b> · Edição 29 jun – 05 jul 2026<br>
+      Relatório de inteligência competitiva produzido para a equipe de Marketing · Sicoob Nordeste
+      <div class="brand-strip" aria-hidden="true">
+        <span style="background:var(--turquesa)"></span>
+        <span style="background:var(--verde-medio)"></span>
+        <span style="background:var(--verde-claro)"></span>
+        <span style="background:var(--roxo)"></span>
+      </div>
+    </div>
+    <div style="text-align:right">Todas as fontes verificadas em 05/07/2026.<br>Metodologia detalhada no início do relatório.</div>
+  </div>
+</footer>
+
+<script>
+// Scroll tracking da navegação
+const links=document.querySelectorAll('nav ul a');
+const sections=[...links].map(a=>document.querySelector(a.getAttribute('href')));
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('active',l.getAttribute('href')==='#'+e.target.id));
+    }
+  });
+},{rootMargin:'-30% 0px -60% 0px'});
+sections.forEach(s=>s&&obs.observe(s));
+</script>
+</body>
+</html>
